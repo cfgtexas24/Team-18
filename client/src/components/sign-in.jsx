@@ -19,7 +19,6 @@ export default function SignInComponent() {
     e.preventDefault()
     setError('')
 
-    // Here you would typically call your authentication API
     // For demonstration, we'll just simulate a successful login
     try {
       // Simulating an API call
