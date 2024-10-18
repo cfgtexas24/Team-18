@@ -1,8 +1,10 @@
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 function Page() {
   return (
-    <div>Page</div>
+   <Link href="/signin"> sign in</Link>
   )
 }
 
