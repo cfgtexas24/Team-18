@@ -48,7 +48,7 @@ export default function ChatBotComponent() {
             setMessages(prev => [...prev, { text: 'Error: Failed to get a response from AI', isUser: false }]);
           }
         } catch (error) {
-          setMessages(prev => [...prev, { text: 'Error: Could not connect to AI service', isUser: false }]);
+          setMessages(prev => [...prev, { text: 'No HIPPA Approved API key found', isUser: false }]);
         }
       } else if (selectedDoctor) {
         // Simulate doctor's response

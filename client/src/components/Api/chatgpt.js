@@ -55,7 +55,7 @@ export default async function handler(req, res) {
     } catch (error) {
       // Log full error details including error stack for debugging
       console.error('Error occurred during fetch:', error.stack);
-      res.status(500).json({ error: 'Failed to connect to AI service', details: error.message });
+      res.status(500).json({ error: 'No HIPPA Approved API key found', details: error.message });
     }
   }
   
