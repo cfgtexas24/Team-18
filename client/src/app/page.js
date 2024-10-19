@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarIcon, ClipboardIcon, UserIcon, BeakerIcon, MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
-
 const services = [
   {
     title: 'Appointments',
@@ -35,10 +34,30 @@ const services = [
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col bg-gradient-to-b from-[#3A696E] to-[#D3E2E4]">
-      <main className="mx-auto max-w-7xl">
-        <section className="flex h-[70vh] items-center justify-evenly py-12 md:py-20">
-          <div className="container mx-auto flex h-full flex-col items-start justify-center px-4 text-left">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#3A696E] to-[#D3E2E4]">
+      <header className="p-4 md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon">
+              <MenuIcon className="h-6 w-6" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="flex flex-col space-y-4">
+              {services.map((service, index) => (
+                <Link href={service.link} key={index} className="flex items-center space-x-2">
+                  <service.icon className="h-5 w-5" />
+                  <span>{service.title}</span>
+                </Link>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </header>
+      <main className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <section className="flex flex-col md:flex-row items-center justify-between py-12 md:py-20">
+          <div className="text-center md:text-left mb-8 md:mb-0">
             <h2 className="mb-4 text-3xl font-bold text-secondary md:text-6xl">Welcome to Abide</h2>
             <p className="mb-8 text-lg text-secondary/70 md:text-xl">
               Your trusted partner in midwifery care management
@@ -48,13 +67,12 @@ export default function LandingPage() {
             </Button>
           </div>
           <svg
-            width="587"
-            height="618"
+            className="w-full max-w-md md:max-w-lg"
             viewBox="0 0 587 618"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_1_2)">
+            <g clipPath="url(#clip0_1_2)">
               <path
                 d="M348.29 415.42C359.12 423.38 372.1 424 377.28 416.79C382.45 409.59 377.86 397.3 367.02 389.34C362.73 386.1 357.72 383.97 352.39 383.15L306.05 350.02L290.62 373.05L337.94 403.26C340.36 408.13 343.91 412.3 348.29 415.42Z"
                 fill="#A26B61"
@@ -114,14 +132,13 @@ export default function LandingPage() {
             <h3 className="mb-8 text-center text-2xl font-bold text-secondary md:mb-12 md:text-3xl">
               Our Services
             </h3>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <Link href={service.link} key={index}>
                   <Card className="h-full p-4 transition-shadow duration-300 hover:shadow-lg">
                     <CardHeader>
-                      <CalendarIcon className="mr-2 h-5 w-5" />
-
                       <CardTitle className="flex items-center text-lg md:text-xl">
+                        <service.icon className="mr-2 h-5 w-5" />
                         {service.title}
                       </CardTitle>
                     </CardHeader>
