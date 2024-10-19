@@ -1,9 +1,15 @@
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
-import Banner from '@/components/banner'
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import React from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CalendarIcon, ClipboardIcon, UserIcon, BeakerIcon, MenuIcon } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
-function Page() {
+export default function LandingPage() {
   return (
     <div>
       <Banner />
@@ -34,5 +40,3 @@ function Page() {
     </div>
   )
 }
-
-export default Page
