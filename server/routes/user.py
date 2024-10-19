@@ -20,7 +20,5 @@ async def user_appts():
 
 # body is datetime, user_id, location
 @router.post("/user/schedule")
-async def user_schedule():
-    return None
-
-
+async def user_schedule(datetime: datetime.datetime, user_id: int, location: str):
+    return datetime, user_id, location
