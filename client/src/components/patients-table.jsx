@@ -41,7 +41,7 @@ export default function PatientsTable() {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto mt-2">
       <Input
         type="text"
         placeholder="Search..."
@@ -79,13 +79,12 @@ export default function PatientsTable() {
           ))}
         </TableBody>
       </Table>
-      {filteredData.length === 0 && (
-        <div className="text-center p-4">No matching data found.</div>
-      )}
+      {filteredData.length === 0 && <div className="p-4 text-center">No matching data found.</div>}
       {filteredData.length > 0 && (
-        <div className="flex items-center justify-between mt-4">
+        <div className="mt-4 flex items-center justify-between">
           <div>
-            Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredData.length)} of {filteredData.length} entries
+            Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, filteredData.length)} of{' '}
+            {filteredData.length} entries
           </div>
           <div className="flex items-center space-x-2">
             <Button
@@ -96,7 +95,9 @@ export default function PatientsTable() {
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
-            <span>{currentPage} of {pageCount}</span>
+            <span>
+              {currentPage} of {pageCount}
+            </span>
             <Button
               variant="outline"
               size="sm"
