@@ -24,7 +24,7 @@ export default function ClientFormWithQuestions() {
 
   return (
     (<div clasname="flex flex-col h-screen">
-    <div className="bg-[#D3E2E4] max-w-md mx-auto my-[20px] rounded-md p-4 space-y-6">
+    <div className="bg-[#D3E2E4] max-w-md mx-auto my-[20px] rounded-lg p-6 space-y-6">
       <h1 className="text-2xl font-bold text-center">Client Information</h1>
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
