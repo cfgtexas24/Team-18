@@ -16,10 +16,6 @@
   font-style: normal;
 }
 
-/* Apply the font globally */
-body {
-  /* font-family: "arial"; */
-}
 
 @layer utilities {
   .text-balance {
