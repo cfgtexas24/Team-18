@@ -39,12 +39,12 @@ export default function PatientProfileComponent() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-2">
-              <Droplet className="text-red-500" />
+              <Droplet className="text-primary" />
               <span className="font-semibold">Blood Type:</span> A+
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <AlertCircle className="text-yellow-500" />
+                <AlertCircle className="text-primary" />
                 <span className="font-semibold">Allergies:</span>
               </div>
               <ul className="list-disc list-inside pl-5 space-y-1">
@@ -54,7 +54,7 @@ export default function PatientProfileComponent() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Pill className="text-blue-500" />
+                <Pill className="text-primary" />
                 <span className="font-semibold">Current Medications:</span>
               </div>
               <ul className="list-disc list-inside pl-5 space-y-1">
