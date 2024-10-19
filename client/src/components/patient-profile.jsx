@@ -65,11 +65,11 @@ export default function PatientProfileComponent() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col justify-between">
           <CardHeader>
             <CardTitle>Upcoming Appointments</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 flex-grow">
             {[
               { date: "2024-10-25", time: "10:00 AM", doctor: "Dr. Smith", type: "Annual Check-up" },
               { date: "2024-11-05", time: "2:30 PM", doctor: "Dr. Johnson", type: "Cardiology Follow-up" },
@@ -85,8 +85,10 @@ export default function PatientProfileComponent() {
                 </div>
               </div>
             ))}
-            <Button className="w-full">Schedule New Appointment</Button>
           </CardContent>
+          <div className="p-4">
+            <Button className="w-full">Schedule New Appointment</Button>
+          </div>
         </Card>
 
         <Card className="md:col-span-2">
