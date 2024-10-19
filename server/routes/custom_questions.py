@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
+from typing import List
 
 # Load environment variables
 load_dotenv()
@@ -35,10 +36,14 @@ class CustomQuestion(Base):
 
 
 # Pydantic model to accept custom question input
+from typing import List, Optional
+
+
+# Pydantic model to accept custom question input
 class CustomQuestionCreate(BaseModel):
     question: str
     type: str  # 'text', 'textarea', or 'select'
-    options: str | None = None  # Only for 'select'
+    options: Optional[str] = None  # Only for 'select'
 
     class Config:
         orm_mode = True
@@ -49,7 +54,10 @@ class CustomQuestionResponse(BaseModel):
     id: int
     question: str
     type: str  # 'text', 'textarea', or 'select'
-    options: list[str] | None  # Return options as a list if it's a 'select'
+    options: Optional[List[str]] = None  # Return options as a list if it's a 'select'
+
+    class Config:
+        orm_mode = True
 
     class Config:
         orm_mode = True
@@ -97,7 +105,7 @@ def create_custom_question(question_data: CustomQuestionCreate, db=Depends(get_d
 
 
 # API route to get all custom questions
-@router.get("/questions/", response_model=list[CustomQuestionResponse])
+@router.get("/questions/", response_model=List[CustomQuestionResponse])
 def get_custom_questions(db=Depends(get_db)):
     questions = db.query(CustomQuestion).all()
 

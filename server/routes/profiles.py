@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
+from typing import List
 
 # Load environment variables
 load_dotenv()
@@ -67,8 +68,8 @@ class UserProfileResponse(BaseModel):
     email: str
     location: str
     blood_type: str
-    allergies: list[str]
-    medications: list[str]
+    allergies: List[str]
+    medications: List[str]
 
     class Config:
         orm_mode = True
