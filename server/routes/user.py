@@ -1,7 +1,6 @@
 from fastapi import APIRouter, FastAPI, Query
+from pydantic import BaseModel
 import datetime
-# Create the FastAPI app
-from datetime import datetime  # Add the missing import statement
 
 app = FastAPI()
 # Initialize the APIRouter
@@ -17,15 +16,20 @@ async def user_appts(user_id: int = Query(..., description="The ID of the user")
     ]
     # Filter appointments by user_id
     user_appointments = [appt for appt in mock_appointments if appt['user_id'] == user_id]
-    
+
     return user_appointments
 
-@router.get("/user/reports")
-async def user_reports():
-    return None
+# @router.get("/user/reports")
+# async def user_reports():
+#     return None
 
-# body is datetime, user_id, location
+
+class UserSchedule(BaseModel):
+    datetime: datetime.datetime
+    user_id: int
+    location: str
+
+
 @router.post("/user/schedule")
-async def user_schedule(datetime: datetime.datetime, user_id: int, location: str):
-    mock_appointments.append({"id": len(mock_appointments) + 1, "user_id": user_id, "date": datetime, "description": ""})
-    return datetime, user_id, location
+async def user_schedule(schedule: UserSchedule):
+    return schedule
