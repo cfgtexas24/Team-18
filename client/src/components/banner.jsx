@@ -18,7 +18,10 @@ function Banner() {
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-4">
           <img src="/images/logo2.png" alt="Logo" className="h-8 w-8 md:h-16 md:w-16" />
-          <h1 className="text-xl font-bold text-secondary-foreground" style={ { fontFamily: 'horn', fontWeight: 'bold', fontSize: '36px'} }>Abide</h1>
+          <h1 className="text-xl font-bold text-secondary-foreground" 
+          style={ { fontFamily: 'horn', fontWeight: 'bold', fontSize: '28px'} }>
+            Abide Patient Portal
+          </h1>
         </Link>
         <nav className="hidden md:block">
           <ul className="flex space-x-2 text-secondary-foreground">
