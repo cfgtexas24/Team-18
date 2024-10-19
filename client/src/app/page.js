@@ -18,10 +18,14 @@ function Page() {
   <Button asChild>
      <Link href="/appointments-page"> appointments </Link>
   </Button>
-  <Button asChild>
+ 
+ <Button asChild>
      <Link href="/lab-reports"> lab reports </Link>
   </Button>
 
+ <Button asChild>
+     <Link href="/profile"> Profile </Link>
+    </Button>
    </div>
     </div>
   )
