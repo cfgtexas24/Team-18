@@ -72,9 +72,6 @@ export default function LabReportsPageComponent() {
     (<div className="flex flex-col h-screen bg-[#f5f3f3]">
       <header className="flex justify-between items-center p-4 border-b">
         <h1 className="text-xl font-semibold">Lab Reports</h1>
-        <Button size="icon" variant="ghost">
-          <Filter className="h-5 w-5" />
-        </Button>
       </header>
       <div className="p-4">
         <div className="relative">
@@ -83,8 +80,8 @@ export default function LabReportsPageComponent() {
           <Input
             type="search"
             placeholder="Search reports..."
-            className="pl-10 bg-white"
             value={searchTerm}
+            className="pl-10 bg-white"
             onChange={handleSearch} />
         </div>
       </div>
