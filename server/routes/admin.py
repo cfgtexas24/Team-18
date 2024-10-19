@@ -4,7 +4,6 @@ import datetime
 import json
 import os
 
-app = FastAPI()
 # Initialize the APIRouter
 router = APIRouter()
 

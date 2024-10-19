@@ -1,62 +1,85 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { CalendarIcon, Clock, MapPin, MoreVertical, Plus } from 'lucide-react'
+import { useEffect, useState } from 'react';
+import { CalendarIcon, Clock, MapPin, MoreVertical, Plus } from 'lucide-react';
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { ScrollArea } from "@/components/ui/scroll-area"
-
-const appointments = [
-  {
-    id: 1,
-    title: 'Prenatal Checkup',
-    date: '2024-10-20',
-    time: '10:00 AM',
-    location: 'Main Clinic',
-    status: 'upcoming',
-  },
-  {
-    id: 2,
-    title: 'Ultrasound',
-    date: '2024-10-25',
-    time: '2:30 PM',
-    location: 'Imaging Center',
-    status: 'upcoming',
-  },
-  {
-    id: 3,
-    title: 'Postpartum Follow-up',
-    date: '2024-09-15',
-    time: '11:00 AM',
-    location: 'Main Clinic',
-    status: 'completed',
-  },
-]
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function MobileAppointmentsPage() {
-  const [activeTab, setActiveTab] = useState('upcoming')
+  const [activeTab, setActiveTab] = useState('upcoming');
+  const [appointments, setAppointments] = useState([]);
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredAppointments = appointments.filter((appointment) => appointment.status === activeTab)
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://127.0.0.1:8000/appointments');
+      const data = await response.json();
+      setAppointments(data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setFilteredAppointments(appointments.filter((appointment) => appointment.status === activeTab));
+  }, [appointments, activeTab]);
+
+  const handleNewAppointment = async (formData) => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create appointment');
+      }
+      const newAppointment = await response.json();
+      setAppointments([...appointments, newAppointment]);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error creating appointment:', error);
+      // Handle error (e.g., show error message to user)
+    }
+  };
 
   return (
-    (<div className="flex flex-col h-screen bg-[#fffbfb]">
-      <header className="flex justify-between items-center p-4 border-b">
+    <div className="flex h-screen flex-col bg-[#fffbfb]">
+      <header className="flex items-center justify-between border-b p-4">
         <h1 className="text-xl font-semibold">My Appointments</h1>
-        <Button size="icon" variant="ghost">
+        <Button size="icon" variant="ghost" onClick={() => setIsModalOpen(true)}>
           <Plus className="h-5 w-5" />
         </Button>
       </header>
-      <Tabs
-        defaultValue="upcoming"
-        className="flex-1 flex flex-col"
-        onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-2 sticky top-0 z-10 bg-background">
-          <TabsTrigger value="upcoming" className="text-sm py-3">Upcoming</TabsTrigger>
-          <TabsTrigger value="completed" className="text-sm py-3">Completed</TabsTrigger>
+      <Tabs defaultValue="upcoming" className="flex flex-1 flex-col" onValueChange={setActiveTab}>
+        <TabsList className="sticky top-0 z-10 grid w-full grid-cols-2 bg-background">
+          <TabsTrigger value="upcoming" className="py-3 text-sm">
+            Upcoming
+          </TabsTrigger>
+          <TabsTrigger value="completed" className="py-3 text-sm">
+            Completed
+          </TabsTrigger>
         </TabsList>
 
         <ScrollArea className="flex-1">
@@ -69,33 +92,40 @@ export default function MobileAppointmentsPage() {
           </TabsContent>
         </ScrollArea>
       </Tabs>
-    </div>)
+
+      <NewAppointmentModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleNewAppointment}
+      />
+    </div>
   );
 }
 
 function AppointmentList({ appointments }) {
   if (appointments.length === 0) {
-    return <p className="text-center text-muted-foreground mt-8">No appointments found.</p>;
+    return <p className="mt-8 text-center text-muted-foreground">No appointments found.</p>;
   }
 
   return (
-    (<div className="space-y-4 mt-4">
+    <div className="mt-4 space-y-4">
       {appointments.map((appointment) => (
         <AppointmentCard key={appointment.id} appointment={appointment} />
       ))}
-    </div>)
+    </div>
   );
 }
 
 function AppointmentCard({ appointment }) {
   return (
-    (<Card className="relative">
+    <Card className="relative">
       <CardContent className="p-4">
-        <div className="flex justify-between items-start mb-2">
+        <div className="mb-2 flex items-start justify-between">
           <h3 className="font-semibold">{appointment.title}</h3>
           <Badge
             variant={appointment.status === 'upcoming' ? 'default' : 'secondary'}
-            className="text-xs">
+            className="text-xs"
+          >
             {appointment.status}
           </Badge>
         </div>
@@ -113,8 +143,10 @@ function AppointmentCard({ appointment }) {
             {appointment.location}
           </div>
         </div>
-        <div className="mt-4 flex justify-between items-center">
-          <Button variant="outline" size="sm" className="text-xs">View Details</Button>
+        <div className="mt-4 flex items-center justify-between">
+          <Button variant="outline" size="sm" className="text-xs">
+            View Details
+          </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
@@ -128,6 +160,86 @@ function AppointmentCard({ appointment }) {
           </DropdownMenu>
         </div>
       </CardContent>
-    </Card>)
+    </Card>
+  );
+}
+
+function NewAppointmentModal({ isOpen, onClose, onSubmit }) {
+  const [formData, setFormData] = useState({
+    title: '',
+    date: '',
+    time: '',
+    location: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ ...formData, status: 'upcoming' });
+    setFormData({ title: '', date: '', time: '', location: '' });
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>New Appointment</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="date">Date</Label>
+            <Input
+              id="date"
+              name="date"
+              type="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="time">Time</Label>
+            <Input
+              id="time"
+              name="time"
+              type="time"
+              value={formData.time}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="location">Location</Label>
+            <Input
+              id="location"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={onClose}>
+              Cancel
+            </Button>
+            <Button type="submit">Create Appointment</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
