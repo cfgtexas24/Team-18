@@ -1,26 +1,33 @@
 'use client';
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import { MessageCircle, X, Send } from 'lucide-react';
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const doctors = [
   { id: 1, name: 'John Doe', specialty: 'General Practitioner', avatarUrl: '/placeholder.svg?height=40&width=40' },
   { id: 2, name: 'Jane Smith', specialty: 'Pediatrician', avatarUrl: '/placeholder.svg?height=40&width=40' },
   { id: 3, name: 'Mike Johnson', specialty: 'Cardiologist', avatarUrl: '/placeholder.svg?height=40&width=40' },
-]
+];
 
 export default function ChatBotComponent() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState([])
-  const [input, setInput] = useState('')
-  const [selectedDoctor, setSelectedDoctor] = useState(null)
-  const [isChatWithAI, setIsChatWithAI] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isChatWithAI, setIsChatWithAI] = useState(false);
+  const [showPopup, setShowPopup] = useState(true); // Popup state
 
-  const toggleChat = () => setIsOpen(!isOpen)
+  const toggleChat = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    // Automatically close popup after 30 seconds if not clicked
+    const timer = setTimeout(() => setShowPopup(false), 30000); // 30 seconds = 30000 milliseconds
+    return () => clearTimeout(timer); // Clean up the timer
+  }, []);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -42,7 +49,6 @@ export default function ChatBotComponent() {
           const data = await response.json();
 
           if (response.ok) {
-            // Add AI response to the chat
             setMessages(prev => [...prev, { text: data.reply, isUser: false }]);
           } else {
             setMessages(prev => [...prev, { text: 'Error: Failed to get a response from AI', isUser: false }]);
@@ -77,9 +83,17 @@ export default function ChatBotComponent() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
+      {showPopup && ( // Popup logic
+        <div className="fixed bottom-20 right-4 bg-primary text-white p-4 rounded-lg shadow-lg animate-bounce">
+          <p className="font-semibold text-sm">👋 Hey there! Need help? Ask Doc Bot!</p>
+          <Button variant="ghost" size="icon" onClick={() => setShowPopup(false)} aria-label="Close popup">
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
       {isOpen ? (
-        <div className="bg-white rounded-lg shadow-xl w-80 h-96 flex flex-col">
-          <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center">
+        <div className="bg-white rounded-full shadow-xl w-80 h-96 flex flex-col"> {/* Fully rounded chatbot box */}
+          <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center rounded-t-full">
             <div className="flex items-center space-x-2">
               {selectedDoctor ? (
                 <>
@@ -93,7 +107,7 @@ export default function ChatBotComponent() {
                   </div>
                 </>
               ) : (
-                <h3 className="font-semibold">{isChatWithAI ? 'Doc Bot' : 'Select a Doctor'}</h3>
+                <h3 className="font-semibold">{isChatWithAI ? 'Ask Doc Bot' : 'Select a Doctor'}</h3>
               )}
             </div>
             <Button variant="ghost" size="icon" onClick={toggleChat} aria-label="Close chat">
@@ -157,5 +171,5 @@ export default function ChatBotComponent() {
         </Button>
       )}
     </div>
-  )
+  );
 }
