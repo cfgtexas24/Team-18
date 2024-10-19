@@ -22,6 +22,7 @@ export default function LandingPage() {
             <ul className="flex space-x-4">
               <li><Button variant="ghost" asChild><Link href="/signin">Sign In</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/client-signup">Client Signup</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/schedule-event">Events</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/appointments-page">Appointments</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/lab-reports">Lab Reports</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/profile">Profile</Link></Button></li>
@@ -37,6 +38,7 @@ export default function LandingPage() {
               <nav className="flex flex-col space-y-4 mt-6">
                 <Button variant="ghost" asChild><Link href="/signin">Sign In</Link></Button>
                 <Button variant="ghost" asChild><Link href="/client-signup">Client Signup</Link></Button>
+                <Button variant="ghost" asChild><Link href="/schedule-event">Events</Link></Button>
                 <Button variant="ghost" asChild><Link href="/appointments-page">Appointments</Link></Button>
                 <Button variant="ghost" asChild><Link href="/lab-reports">Lab Reports</Link></Button>
                 <Button variant="ghost" asChild><Link href="/profile">Profile</Link></Button>
