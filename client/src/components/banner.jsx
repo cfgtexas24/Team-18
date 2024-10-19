@@ -8,6 +8,7 @@ import { MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import logo from '../images/logo2.png';
 import { AuthContext } from './AuthContext';
+import LangSelect from "./LangSelect";
 
 function Banner() {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -37,7 +38,10 @@ function Banner() {
               </>
             )}
           </ul>
+          <LangSelect />
+
         </nav>
+        
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -60,6 +64,7 @@ function Banner() {
                   <Button variant="ghost" onClick={logout}>Sign Out</Button>
                 </>
               )}
+              <LangSelect />
             </nav>
           </SheetContent>
         </Sheet>
