@@ -7,13 +7,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#faf8f8]">
 
       <main className="flex-grow">
         <section className="bg-[#F4E8E7] py-12 md:py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text[#A26B61] mb-4">Welcome to ClientCare</h2>
-            <p className="text-lg md:text-xl text-purple-600 mb-8">Your trusted partner in midwifery care management</p>
+            <h2 className="text-3xl md:text-4xl font-bold text[#A26B61] mb-4">Welcome to Abide</h2>
+            <p className="text-lg md:text-xl text-[#A26B61] mb-8">Your trusted partner in midwifery care management</p>
             <Button size="lg" asChild>
               <Link href="/client-signup">Get Started</Link>
             </Button>
@@ -83,12 +83,6 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-
-      <footer className="bg-purple-800 text-white py-6 md:py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm md:text-base">&copy; 2024 ClientCare. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
