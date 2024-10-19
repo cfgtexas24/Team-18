@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'horn'; /* The name you'll use in CSS */
-  src: url('/fonts/Hornbill-Black.otf') format('opentype');
+  src: url('/fonts/Hornbill-Bold.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
