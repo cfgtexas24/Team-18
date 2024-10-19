@@ -3,10 +3,10 @@ import React from "react";
 
 function Page() {
     return (
-        <div>
-            <AdminDashboard />
-        </div>
-    )
+      <div className="bg-secondary">
+        <AdminDashboard />
+      </div>
+    );
 }
 
 export default Page
