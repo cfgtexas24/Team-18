@@ -12,7 +12,7 @@ import logo from '../images/logo2.png';
 function Banner() {
     return ( 
         <div>
-        <header className="bg-[#477377] py-4">
+        <header className="bg-[#3A696E] py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <img src={logo} alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
