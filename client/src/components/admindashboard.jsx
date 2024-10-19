@@ -94,7 +94,7 @@ export default function Component() {
   const renderItemList = (items, type) => (
     <div className="space-y-2">
       {items.map((item) => (
-        <div key={item.id} className="flex items-center justify-between rounded bg-gray-100 p-2">
+        <div key={item.id} className="flex items-center justify-between rounded bg-secondary p-2">
           <div>
             <span className="font-bold">{item.title}</span> - {item.date} at {item.time}
           </div>
@@ -117,7 +117,7 @@ export default function Component() {
   );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto bg-secondary p-4">
       <div className="grid grid-cols-2 gap-4">
         <Card>
           <CardHeader>

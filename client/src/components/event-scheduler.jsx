@@ -22,9 +22,9 @@ import {
 } from "@/components/ui/popover"
 
 const initialEvents = [
-  { id: 1, title: "Team Meeting", description: "Discuss project progress" },
-  { id: 2, title: "Client Presentation", description: "Present new features" },
-  { id: 3, title: "Workshop", description: "React best practices" },
+  { id: 1, title: "Birthing Class", description: "Walk throught the birthing process" },
+  { id: 2, title: "Lactation Tutorial", description: "Walk through lactation process" },
+  { id: 3, title: "Motherhood Workshop", description: "Grow parenting skills" },
 ]
 
 export default function EventSchedulerComponent() {
@@ -40,7 +40,8 @@ export default function EventSchedulerComponent() {
   }
 
   return (
-    <div className="container mx-auto max-w-md p-4">
+  <div>
+    <div className="container mx-auto max-w-md p-6 bg-[#D3E2E4] w-screen rounded-2xl">
       <h1 className="mb-4 text-2xl font-bold">Event Scheduler</h1>
       <div className="space-y-4">
         {events.map((event) => (
@@ -90,5 +91,6 @@ export default function EventSchedulerComponent() {
         ))}
       </div>
     </div>
+  </div>
   );
 }

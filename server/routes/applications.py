@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 from dotenv import load_dotenv
 import os
+from typing import List
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -111,7 +112,7 @@ def mock_data():
         db.commit()
 
 
-@router.get("/appointments", response_model=list[AppointmentResponse])
+@router.get("/appointments", response_model=List[AppointmentResponse])
 def get_appointments(db=Depends(get_db)):
     appointments = db.query(Appointment).all()
     return appointments

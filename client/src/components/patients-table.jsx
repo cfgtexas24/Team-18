@@ -14,7 +14,7 @@ export default function PatientsTable() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:8000/admin/patients')
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/patients`);
       const data = await response.json()
       setPatientsData(data)
     }

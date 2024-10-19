@@ -1,17 +1,23 @@
 // components/banner.jsx
 'use client';
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import React, { useContext } from "react";
-import { MenuIcon } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import React, { useContext, useEffect, useState } from 'react';
+import { MenuIcon } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { AuthContext } from './AuthContext';
-import LangSelect from "./LangSelect";
+import LangSelect from './LangSelect';
+import { usePathname } from 'next/navigation';
 
 function Banner() {
   const { isAuthenticated, logout } = useContext(AuthContext);
 
+  const [isInAdminRoute, setIsInAdminRoute] = useState(false);
+  const pathName = usePathname();
+  useEffect(() => {
+    setIsInAdminRoute(pathName.includes('/admin'));
+  }, [pathName]);
 
   return (
     <header className="bg-secondary py-2 shadow">
@@ -25,7 +31,7 @@ function Banner() {
         </Link>
         <nav className="hidden md:block">
           <ul className="flex space-x-2 text-secondary-foreground">
-            {!isAuthenticated ? (
+            {!isAuthenticated && !isInAdminRoute ? (
               <>
                 <li>
                   <Button variant="ghost" asChild>
@@ -41,31 +47,37 @@ function Banner() {
               </>
             ) : (
               <>
-                <li>
-                  <Button variant="ghost" asChild>
-                    <Link href="/appointments-page">Appointments</Link>
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="ghost" asChild>
-                    <Link href="/schedule-event">Events</Link>
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="ghost" asChild>
-                    <Link href="/lab-reports">Lab Reports</Link>
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="ghost" asChild>
-                    <Link href="/profile">Profile</Link>
-                  </Button>
-                </li>
-                <li>
-                  <Button variant="ghost" onClick={logout}>
-                    Sign Out
-                  </Button>
-                </li>
+                <>
+                  {!isInAdminRoute && (
+                    <>
+                      <li>
+                        <Button variant="ghost" asChild>
+                          <Link href="/appointments-page">Appointments</Link>
+                        </Button>
+                      </li>
+                      <li>
+                        <Button variant="ghost" asChild>
+                          <Link href="/schedule-event">Events</Link>
+                        </Button>
+                      </li>
+                      <li>
+                        <Button variant="ghost" asChild>
+                          <Link href="/lab-reports">Lab Reports</Link>
+                        </Button>
+                      </li>
+                      <li>
+                        <Button variant="ghost" asChild>
+                          <Link href="/profile">Profile</Link>
+                        </Button>
+                      </li>
+                      <li>
+                        <Button variant="ghost" onClick={logout}>
+                          Sign Out
+                        </Button>
+                      </li>
+                    </>
+                  )}
+                </>
                 <LangSelect />
               </>
             )}
@@ -80,7 +92,7 @@ function Banner() {
           </SheetTrigger>
           <SheetContent>
             <nav className="mt-6 flex flex-col space-y-4">
-              {!isAuthenticated ? (
+              {!isAuthenticated && !isInAdminRoute ? (
                 <>
                   <Button variant="ghost" asChild>
                     <Link href="/signin">Sign In</Link>
@@ -92,21 +104,27 @@ function Banner() {
                 </>
               ) : (
                 <>
-                  <Button variant="ghost" asChild>
-                    <Link href="/appointments-page">Appointments</Link>
-                  </Button>
-                  <Button variant="ghost" asChild>
-                    <Link href="/schedule-event">Events</Link>
-                  </Button>
-                  <Button variant="ghost" asChild>
-                    <Link href="/lab-reports">Lab Reports</Link>
-                  </Button>
-                  <Button variant="ghost" asChild>
-                    <Link href="/profile">Profile</Link>
-                  </Button>
-                  <Button variant="ghost" onClick={logout}>
-                    Sign Out
-                  </Button>
+                  <>
+                    {!isInAdminRoute && (
+                      <>
+                        <Button variant="ghost" asChild>
+                          <Link href="/appointments-page">Appointments</Link>
+                        </Button>
+                        <Button variant="ghost" asChild>
+                          <Link href="/schedule-event">Events</Link>
+                        </Button>
+                        <Button variant="ghost" asChild>
+                          <Link href="/lab-reports">Lab Reports</Link>
+                        </Button>
+                        <Button variant="ghost" asChild>
+                          <Link href="/profile">Profile</Link>
+                        </Button>
+                        <Button variant="ghost" onClick={logout}>
+                          Sign Out
+                        </Button>
+                      </>
+                    )}
+                  </>
                   <LangSelect />
                 </>
               )}

@@ -38,7 +38,7 @@ export default function LandingPage() {
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <section className="flex flex-col md:flex-row items-center justify-between py-12 md:py-20">
           <div className="text-center md:text-left mb-8 md:mb-0">
-            <h2 className="mb-4 text-3xl font-bold text-secondary md:text-6xl">Welcome to Abide</h2>
+            <h2 className="mb-4 text-3xl font-bold text-secondary md:text-6xl">Welcome to AbideCare</h2>
             <p className="mb-8 text-lg text-secondary/70 md:text-xl">
               Your trusted partner in midwifery care management
             </p>
@@ -115,7 +115,7 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <Link href={service.link} key={index}>
-                  <Card className="h-full p-4 transition-shadow duration-300 hover:shadow-lg">
+                  <Card className="h-full p-4 transition-shadow duration-300 hover:shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
                     <CardHeader>
                       <CardTitle className="flex items-center text-lg md:text-xl">
                         <service.icon className="mr-2 h-5 w-5" />
