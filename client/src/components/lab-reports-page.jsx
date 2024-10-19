@@ -80,7 +80,6 @@ export default function LabReportsPageComponent() {
           <Input
             type="search"
             placeholder="Search reports..."
-            className="pl-10"
             value={searchTerm}
             className="pl-10 bg-white"
             onChange={handleSearch} />
