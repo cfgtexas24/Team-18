@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
+import Banner from '@/components/banner'
 
 function Page() {
   return (
+<div>
+      <Banner />
  <div className="p-6 flex space-x-4">
   <Button asChild>
  <Link href="/signin"> sign in</Link>
@@ -15,7 +18,9 @@ function Page() {
   <Button asChild>
      <Link href="/appointments-page"> appointments </Link>
   </Button>
+
    </div>
+    </div>
   )
 }
 
