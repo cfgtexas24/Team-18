@@ -17,7 +17,7 @@ export function LandingPageComponent() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
             <img src="/logo.png" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
-            <h1 className="text-xl md:text-2xl font-bold text-purple-800">ClientCare</h1>
+            <h1 className="text-xl md:text-2xl font-bold text-[#A26B61]">ABIDE</h1>
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
@@ -50,7 +50,7 @@ export function LandingPageComponent() {
       <main className="flex-grow">
         <section className="bg-purple-100 py-12 md:py-20">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-purple-800 mb-4">Welcome to ClientCare</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Welcome to ClientCare</h2>
             <p className="text-lg md:text-xl text-purple-600 mb-8">Your trusted partner in midwifery care management</p>
             <Button size="lg" asChild>
               <Link href="/client-signup">Get Started</Link>

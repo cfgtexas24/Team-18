@@ -5,7 +5,6 @@ import React from 'react'
 function Page() {
     return (
         <div class="bg-[#F3ECEC]">
-            <Banner />
             <EventScheduler />
         </div>
     )
