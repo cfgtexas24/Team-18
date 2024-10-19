@@ -5,8 +5,7 @@ import React from 'react'
 
 function Page() {
   return (
-    <div class="bg-[#F3ECEC] min-h-screen">
-      <Banner />
+    <div>
       <SignInComponent />
     </div>
   )

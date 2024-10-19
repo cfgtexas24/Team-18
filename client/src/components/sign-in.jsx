@@ -32,7 +32,7 @@ export default function SignInComponent() {
   }
 
   return (
-    (<Card className="bg-[#91C1C5] w-full max-w-md mx-auto my-[20px]">
+    (<Card className="bg-[#D3E2E4] w-full max-w-md mx-auto my-[20px]">
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>Enter your email and password to access your account</CardDescription>
