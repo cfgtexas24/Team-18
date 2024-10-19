@@ -6,7 +6,6 @@ import Link from "next/link";
 import React, { useContext } from "react";
 import { MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import logo from '../images/logo2.png';
 import { AuthContext } from './AuthContext';
 import LangSelect from "./LangSelect";
 
@@ -18,7 +17,7 @@ function Banner() {
     <header className="bg-[#3A696E] py-4">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-4">
-          <img src={logo} alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
+          <img src="/images/logo2.png" alt="Logo" className="h-8 w-8 md:h-10 md:w-10" />
           <h1 className="text-xl md:text-2xl font-bold text-white">ABIDE</h1>
         </Link>
         <nav className="hidden md:block">
