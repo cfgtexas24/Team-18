@@ -20,7 +20,7 @@ function Banner() {
           <img src="/images/logo2.png" alt="Logo" className="h-8 w-8 md:h-16 md:w-16" />
           <h1 className="text-xl font-bold text-secondary-foreground" 
           style={ { fontFamily: 'horn', fontWeight: 'bold', fontSize: '28px'} }>
-            Abide Patient Portal
+            AbideCare
           </h1>
         </Link>
         <nav className="hidden md:block">
