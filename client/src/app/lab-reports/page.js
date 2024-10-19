@@ -1,12 +1,11 @@
-import SignInComponent from '@/components/sign-in'
 import Banner from '@/components/banner'
+import LabReports from '@/components/lab-reports-page'
 import React from 'react'
-
 
 function Page() {
   return (
     <div>
-      <SignInComponent />
+      <LabReports />
     </div>
   )
 }

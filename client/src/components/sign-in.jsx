@@ -19,7 +19,6 @@ export default function SignInComponent() {
     e.preventDefault()
     setError('')
 
-    // Here you would typically call your authentication API
     // For demonstration, we'll just simulate a successful login
     try {
       // Simulating an API call
@@ -33,7 +32,7 @@ export default function SignInComponent() {
   }
 
   return (
-    (<Card className="w-full max-w-md mx-auto">
+    (<Card className="bg-[#D3E2E4] w-full max-w-md mx-auto my-[20px]">
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>Enter your email and password to access your account</CardDescription>
@@ -44,6 +43,7 @@ export default function SignInComponent() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
+                className="bg-white"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -54,6 +54,7 @@ export default function SignInComponent() {
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
+                className="bg-white"
                 id="password"
                 type="password"
                 value={password}

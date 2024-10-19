@@ -1,12 +1,11 @@
-import SignInComponent from '@/components/sign-in'
+import ClientFormWithQuestions from '@/components/client-form-with-questions'
 import Banner from '@/components/banner'
 import React from 'react'
-
 
 function Page() {
   return (
     <div>
-      <SignInComponent />
+      <ClientFormWithQuestions />
     </div>
   )
 }
