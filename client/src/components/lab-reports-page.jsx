@@ -69,7 +69,7 @@ export default function LabReportsPageComponent() {
   }
 
   return (
-    (<div className="flex flex-col h-screen bg-[#f5f3f3]">
+    (<div className="flex flex-col h-screen bg-secondary">
       <header className="flex justify-between items-center p-4 border-b">
         <h1 className="text-xl font-semibold">Lab Reports</h1>
         <Button size="icon" variant="ghost">
