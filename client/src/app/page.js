@@ -4,7 +4,15 @@ import React from 'react'
 
 function Page() {
   return (
-   <Link href="/signin"> sign in</Link>
+ <div className="p-6 flex space-x-4">
+  <Button asChild>
+ <Link href="/signin"> sign in</Link>
+  </Button>
+
+    <Button asChild>
+     <Link href="/client-signup"> Client Signup</Link>
+  </Button>
+   </div>
   )
 }
 

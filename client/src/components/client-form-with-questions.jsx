@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
-export function ClientFormWithQuestions() {
+export default function ClientFormWithQuestions() {
   const [activeSection, setActiveSection] = useState('personal')
 
   const sections = [
