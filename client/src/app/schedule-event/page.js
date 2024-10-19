@@ -4,10 +4,10 @@ import React from 'react'
 
 function Page() {
     return (
-        <div className="bg-[#F3ECEC]">
-            <EventScheduler />
-        </div>
-    )
+      <div className="min-h-screen bg-[#F3ECEC]">
+        <EventScheduler />
+      </div>
+    );
 }
 
 export default Page
