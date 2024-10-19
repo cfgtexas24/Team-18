@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "poppins";
+  src: url('/fonts/Poppins-Black.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'horn'; /* The name you'll use in CSS */
   src: url('/fonts/Hornbill-Bold.otf') format('opentype');
   font-weight: normal;
@@ -11,7 +18,7 @@
 
 /* Apply the font globally */
 body {
-  font-family: 'horn';
+  /* font-family: "arial"; */
 }
 
 @layer utilities {
