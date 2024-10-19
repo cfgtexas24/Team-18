@@ -6,10 +6,11 @@ import { Mail, Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Select } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Banner } from "@/components/banner"
 
 export default function ClientFormWithQuestions() {
   const [activeSection, setActiveSection] = useState('personal')
@@ -22,7 +23,8 @@ export default function ClientFormWithQuestions() {
   ]
 
   return (
-    (<div className="max-w-md mx-auto p-4 space-y-6">
+    (
+    <div className="bg-[#91C1C5] max-w-md mx-auto my-[10px] rounded-md p-4 space-y-6">
       <h1 className="text-2xl font-bold text-center">Client Information</h1>
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
@@ -37,17 +39,13 @@ export default function ClientFormWithQuestions() {
           <div>
             <Label htmlFor="clientType">Client Type</Label>
             <Select id="clientType">
-              <option>Select client type</option>
-              <option>New Client</option>
-              <option>Returning Client</option>
-            </Select>
-          </div>
-          <div>
-            <Label htmlFor="clientStatus">Client Status</Label>
-            <Select id="clientStatus">
-              <option>Select status</option>
-              <option>Active</option>
-              <option>Inactive</option>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Client Type"></SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="New Client">New Client</SelectItem>
+                <SelectItem value="Returning Client">Returning Client</SelectItem>
+              </SelectContent>
             </Select>
           </div>
           <div>
@@ -97,10 +95,14 @@ export default function ClientFormWithQuestions() {
           <div>
             <Label htmlFor="language">Primary Language</Label>
             <Select id="language">
-              <option>Select language</option>
-              <option>English</option>
-              <option>Spanish</option>
-              <option>French</option>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Language"></SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="English">English</SelectItem>
+                <SelectItem value="Spanish">Spanish</SelectItem>
+                <SelectItem value="Arabic">Arabic</SelectItem>
+              </SelectContent>
             </Select>
           </div>
           <div>
