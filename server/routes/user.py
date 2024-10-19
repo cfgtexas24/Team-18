@@ -13,7 +13,10 @@ async def user_appts():
         {"id": 2, "user_id": 1, "date": datetime.datetime(2023, 10, 2, 12, 0), "description": "Therapy session"},
         {"id": 3, "user_id": 2, "date": datetime.datetime(2023, 10, 3, 14, 0), "description": "Doctor appointment"},
     ]
-    return mock_appointments
+    # Filter appointments by user_id
+    user_appointments = [appt for appt in mock_appointments if appt['user_id'] == user_id]
+    
+    return user_appointments
 
 # @router.get("/user/reports")
 # async def user_reports():
