@@ -96,11 +96,8 @@ def mock_data():
             email="john.doe@example.com",
             location="New York, NY",
             blood_type="A+",
-            allergies=["Penicillin", "Peanuts"],  # Provide as a list
-            medications=[
-                "Lisinopril 10mg daily",
-                "Metformin 500mg twice daily",
-            ],
+            allergies="Penicillin,Peanuts",  # Properly formatted string, no extra braces or quotes
+            medications="Lisinopril 10mg daily,Metformin 500mg twice daily",  # Properly formatted
         )
         db.add(mock_profile)
         db.commit()
@@ -113,8 +110,16 @@ def get_user_profile(user_id: int, db=Depends(get_db)):
     if not profile:
         raise HTTPException(status_code=404, detail="User profile not found")
 
-    # Convert comma-separated strings into lists for allergies and medications
-    profile.allergies = profile.allergies.split(",") if profile.allergies else []
-    profile.medications = profile.medications.split(",") if profile.medications else []
+    # Ensure proper conversion of comma-separated strings into lists
+    profile.allergies = (
+        [item.strip() for item in profile.allergies.split(",")]
+        if profile.allergies
+        else []
+    )
+    profile.medications = (
+        [item.strip() for item in profile.medications.split(",")]
+        if profile.medications
+        else []
+    )
 
     return profile
