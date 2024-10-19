@@ -12,6 +12,9 @@ function Page() {
     <Button asChild>
      <Link href="/client-signup"> Client Signup</Link>
   </Button>
+  <Button asChild>
+     <Link href="/appointments-page"> appointments </Link>
+  </Button>
    </div>
   )
 }
