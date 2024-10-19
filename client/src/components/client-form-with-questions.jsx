@@ -23,8 +23,8 @@ export default function ClientFormWithQuestions() {
   ]
 
   return (
-    (
-    <div className="bg-[#91C1C5] max-w-md mx-auto my-[20px] rounded-md p-4 space-y-6">
+    (<div clasname="flex flex-col h-screen bg-[#fffbfb]">
+    <div className="bg-[#D3E2E4] max-w-md mx-auto my-[20px] rounded-md p-4 space-y-6">
       <h1 className="text-2xl font-bold text-center">Client Information</h1>
       <Tabs defaultValue="personal" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
@@ -39,22 +39,22 @@ export default function ClientFormWithQuestions() {
           <div>
             <Label htmlFor="clientType">Client Type</Label>
             <Select id="clientType">
-              <SelectTrigger>
-                <SelectValue placeholder="Select Client Type"></SelectValue>
+              <SelectTrigger className="bg-white">
+                <SelectValue placeholder="Select Client Type" className="bg-white"></SelectValue>
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent >
                 <SelectItem value="New Client">New Client</SelectItem>
                 <SelectItem value="Returning Client">Returning Client</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="Full Name" />
+            <Label htmlFor="name" >Name</Label>
+            <Input className="bg-white" id="name" placeholder="Full Name" />
           </div>
           <div>
             <Label htmlFor="dob">Date of Birth</Label>
-            <Input id="dob" type="date" />
+            <Input className="bg-white" id="dob" type="date" />
           </div>
         </TabsContent>
 
@@ -66,7 +66,7 @@ export default function ClientFormWithQuestions() {
                 id="email"
                 type="email"
                 placeholder="email@example.com"
-                className="rounded-r-none" />
+                className="bg-white rounded-r-none" />
               <Button type="button" variant="outline" className="rounded-l-none">
                 <Mail className="h-4 w-4" />
               </Button>
@@ -79,7 +79,7 @@ export default function ClientFormWithQuestions() {
                 id="phone"
                 type="tel"
                 placeholder="(123) 456-7890"
-                className="rounded-r-none" />
+                className="bg-white rounded-r-none" />
               <Button type="button" variant="outline" className="rounded-l-none">
                 <Phone className="h-4 w-4" />
               </Button>
@@ -87,7 +87,7 @@ export default function ClientFormWithQuestions() {
           </div>
           <div>
             <Label htmlFor="address">Address</Label>
-            <Textarea id="address" placeholder="Enter your address" />
+            <Textarea id="address" placeholder="Enter your address" className="bg-white rounded-r-none" />
           </div>
         </TabsContent>
 
@@ -95,7 +95,7 @@ export default function ClientFormWithQuestions() {
           <div>
             <Label htmlFor="language">Primary Language</Label>
             <Select id="language">
-              <SelectTrigger>
+              <SelectTrigger className="bg-white">
                 <SelectValue placeholder="Select Language"></SelectValue>
               </SelectTrigger>
               <SelectContent>
@@ -107,7 +107,7 @@ export default function ClientFormWithQuestions() {
           </div>
           <div>
             <Label htmlFor="occupation">Occupation</Label>
-            <Input id="occupation" placeholder="Enter occupation" />
+            <Input className="bg-white" id="occupation" placeholder="Enter occupation" />
           </div>
           <div className="flex items-center space-x-2">
             <input
@@ -123,34 +123,35 @@ export default function ClientFormWithQuestions() {
             <Label>How did you hear about us?</Label>
             <RadioGroup defaultValue="option-1">
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-1" id="option-1" />
+                <RadioGroupItem className="bg-white" value="option-1" id="option-1" />
                 <Label htmlFor="option-1">Friend or Family</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-2" id="option-2" />
+                <RadioGroupItem className="bg-white" value="option-2" id="option-2" />
                 <Label htmlFor="option-2">Internet Search</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-3" id="option-3" />
+                <RadioGroupItem className="bg-white" value="option-3" id="option-3" />
                 <Label htmlFor="option-3">Social Media</Label>
               </div>
               <div className="flex items-center space-x-2">
-                <RadioGroupItem value="option-4" id="option-4" />
+                <RadioGroupItem className="bg-white" value="option-4" id="option-4" />
                 <Label htmlFor="option-4">Other</Label>
               </div>
             </RadioGroup>
           </div>
           <div className="space-y-2">
             <Label htmlFor="preferences">Any specific preferences or concerns?</Label>
-            <Textarea id="preferences" placeholder="Enter your preferences or concerns" />
+            <Textarea className="bg-white" id="preferences" placeholder="Enter your preferences or concerns" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="questions">Do you have any questions for us?</Label>
-            <Textarea id="questions" placeholder="Enter your questions" />
+            <Textarea className="bg-white" id="questions" placeholder="Enter your questions" />
           </div>
         </TabsContent>
       </Tabs>
       <Button className="w-full">Save Information</Button>
+    </div>
     </div>)
   );
 }
