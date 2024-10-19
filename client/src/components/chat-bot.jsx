@@ -53,9 +53,9 @@ export default function ChatBotComponent() {
       } else if (selectedDoctor) {
         // Simulate doctor's response
         setTimeout(() => {
-          setMessages(prev => [...prev, { 
-            text: `Thank you for your message. This is Dr. ${selectedDoctor.name}. How can I assist you today?`, 
-            isUser: false 
+          setMessages(prev => [...prev, {
+            text: `Thank you for your message. This is Dr. ${selectedDoctor.name}. How can I assist you today?`,
+            isUser: false
           }]);
         }, 1000);
       }
@@ -93,7 +93,7 @@ export default function ChatBotComponent() {
                   </div>
                 </>
               ) : (
-                <h3 className="font-semibold">{isChatWithAI ? 'AI Assistant' : 'Select a Doctor'}</h3>
+                <h3 className="font-semibold">{isChatWithAI ? 'Doc Bot' : 'Select a Doctor'}</h3>
               )}
             </div>
             <Button variant="ghost" size="icon" onClick={toggleChat} aria-label="Close chat">
@@ -115,7 +115,7 @@ export default function ChatBotComponent() {
                 </SelectContent>
               </Select>
               <Button onClick={handleAIChat} className="w-full mt-4">
-                Ask AI
+                Ask Doc Bot
               </Button>
             </div>
           ) : (
