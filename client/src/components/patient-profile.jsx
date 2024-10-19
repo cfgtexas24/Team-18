@@ -8,7 +8,7 @@ import { Calendar, Phone, Mail, MapPin, Droplet, AlertCircle, Pill } from "lucid
 
 export default function PatientProfileComponent() {
   return (
-    <div className="container mx-auto p-4 space-y-6">
+    <div className="container mx-auto my-[20px] p-4 space-y-6">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
         <Avatar className="w-32 h-32">
           <AvatarImage src="/placeholder.svg?height=128&width=128" alt="John Doe" />

@@ -16,31 +16,11 @@ export default function LandingPage() {
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-4">
-              <li>
-                <Button asChild>
-                  <Link href="/signin">Sign In</Link>
-                </Button>
-              </li>
-              <li>
-                <Button asChild>
-                  <Link href="/client-signup">Client Signup</Link>
-                </Button>
-              </li>
-              <li>
-                <Button asChild>
-                  <Link href="/appointments-page">Appointments</Link>
-                </Button>
-              </li>
-              <li>
-                <Button asChild>
-                  <Link href="/lab-reports">Lab Reports</Link>
-                </Button>
-              </li>
-              <li>
-                <Button asChild>
-                  <Link href="/profile">Profile</Link>
-                </Button>
-              </li>
+              <li><Button variant="ghost" asChild><Link href="/signin">Sign In</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/client-signup">Client Signup</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/appointments-page">Appointments</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/lab-reports">Lab Reports</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/profile">Profile</Link></Button></li>
             </ul>
           </nav>
           <Sheet>
@@ -51,21 +31,11 @@ export default function LandingPage() {
             </SheetTrigger>
             <SheetContent>
               <nav className="flex flex-col space-y-4 mt-6">
-                <Button asChild>
-                  <Link href="/signin">Sign In</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/client-signup">Client Signup</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/appointments-page">Appointments</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/lab-reports">Lab Reports</Link>
-                </Button>
-                <Button asChild>
-                  <Link href="/profile">Profile</Link>
-                </Button>
+                <Button variant="ghost" asChild><Link href="/signin">Sign In</Link></Button>
+                <Button variant="ghost" asChild><Link href="/client-signup">Client Signup</Link></Button>
+                <Button variant="ghost" asChild><Link href="/appointments-page">Appointments</Link></Button>
+                <Button variant="ghost" asChild><Link href="/lab-reports">Lab Reports</Link></Button>
+                <Button variant="ghost" asChild><Link href="/profile">Profile</Link></Button>
               </nav>
             </SheetContent>
           </Sheet>
