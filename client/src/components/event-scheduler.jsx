@@ -2,32 +2,51 @@
 import { useState } from "react"
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-export default function EventScheduler() {
-  const [events, setEvents] = useState([
-    { id: 1, title: "Team Meeting", date: undefined },
-    { id: 2, title: "Project Deadline", date: undefined },
-    { id: 3, title: "Client Presentation", date: undefined },
-  ])
+const initialEvents = [
+  { id: 1, title: "Team Meeting", description: "Discuss project progress" },
+  { id: 2, title: "Client Presentation", description: "Present new features" },
+  { id: 3, title: "Workshop", description: "React best practices" },
+]
 
-  const updateEventDate = (id, date) => {
-    setEvents(events.map(event =>
-      event.id === id ? { ...event, date } : event))
+export default function EventSchedulerComponent() {
+  const [events, setEvents] = useState(initialEvents)
+  const [selectedDates, setSelectedDates] = useState({})
+
+  const handleDateSelect = (date, eventId) => {
+    setSelectedDates((prev) => ({ ...prev, [eventId]: date }))
+  }
+
+  const handleSubmit = (eventId) => {
+    setEvents((prev) => prev.filter((event) => event.id !== eventId))
   }
 
   return (
-    (<div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Event Scheduler</h1>
+    (<div className="container mx-auto p-4 max-w-md">
+      <h1 className="text-2xl font-bold mb-4">Event Scheduler</h1>
       <div className="space-y-4">
-        {events.map(event => (
+        {events.map((event) => (
           <Card key={event.id} className="w-full">
             <CardHeader>
               <CardTitle>{event.title}</CardTitle>
+              <CardDescription>{event.description}</CardDescription>
             </CardHeader>
             <CardContent>
               <Popover>
@@ -36,21 +55,32 @@ export default function EventScheduler() {
                     variant={"outline"}
                     className={cn(
                       "w-full justify-start text-left font-normal",
-                      !event.date && "text-muted-foreground"
+                      !selectedDates[event.id] && "text-muted-foreground"
                     )}>
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {event.date ? format(event.date, "PPP") : <span>Pick a date</span>}
+                    {selectedDates[event.id] ? (
+                      format(selectedDates[event.id], "PPP")
+                    ) : (
+                      <span>Pick a date</span>
+                    )}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
-                    selected={event.date}
-                    onSelect={(date) => updateEventDate(event.id, date)}
+                    selected={selectedDates[event.id]}
+                    onSelect={(date) => handleDateSelect(date, event.id)}
                     initialFocus />
                 </PopoverContent>
               </Popover>
             </CardContent>
+            {selectedDates[event.id] && (
+              <CardFooter>
+                <Button className="w-full" onClick={() => handleSubmit(event.id)}>
+                  Submit
+                </Button>
+              </CardFooter>
+            )}
           </Card>
         ))}
       </div>
