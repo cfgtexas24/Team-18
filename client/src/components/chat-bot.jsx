@@ -7,45 +7,73 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-
-
 const doctors = [
   { id: 1, name: 'John Doe', specialty: 'General Practitioner', avatarUrl: '/placeholder.svg?height=40&width=40' },
   { id: 2, name: 'Jane Smith', specialty: 'Pediatrician', avatarUrl: '/placeholder.svg?height=40&width=40' },
   { id: 3, name: 'Mike Johnson', specialty: 'Cardiologist', avatarUrl: '/placeholder.svg?height=40&width=40' },
 ]
 
-export default function ChatBotComponent({
-  doctor
-}) {
+export default function ChatBotComponent() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [selectedDoctor, setSelectedDoctor] = useState(null)
-
+  const [isChatWithAI, setIsChatWithAI] = useState(false)
 
   const toggleChat = () => setIsOpen(!isOpen)
 
-  const sendMessage = (e) => {
-    e.preventDefault()
+  const sendMessage = async (e) => {
+    e.preventDefault();
     if (input.trim()) {
-      setMessages([...messages, { text: input, isUser: true }])
-      setInput('')
-      // Simulate doctor's response
-      setTimeout(() => {
-        setMessages(prev => [...prev, { 
-          text: `Thank you for your message. ${doctor ? `This is Dr. ${doctor.name}.` : ''} How can I assist you today?`, 
-          isUser: false 
-        }])
-      }, 1000)
+      setMessages([...messages, { text: input, isUser: true }]);
+      setInput('');
+
+      if (isChatWithAI) {
+        // Send message to OpenAI API
+        try {
+          const response = await fetch('/api/chatgpt', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: input }),
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            // Add AI response to the chat
+            setMessages(prev => [...prev, { text: data.reply, isUser: false }]);
+          } else {
+            setMessages(prev => [...prev, { text: 'Error: Failed to get a response from AI', isUser: false }]);
+          }
+        } catch (error) {
+          setMessages(prev => [...prev, { text: 'Error: Could not connect to AI service', isUser: false }]);
+        }
+      } else if (selectedDoctor) {
+        // Simulate doctor's response
+        setTimeout(() => {
+          setMessages(prev => [...prev, { 
+            text: `Thank you for your message. This is Dr. ${selectedDoctor.name}. How can I assist you today?`, 
+            isUser: false 
+          }]);
+        }, 1000);
+      }
     }
-  }
+  };
 
   const handleDoctorSelect = (doctorId) => {
-    const doctor = doctors.find(d => d.id.toString() === doctorId)
-    setSelectedDoctor(doctor)
-    setMessages([])
-  }
+    const doctor = doctors.find(d => d.id.toString() === doctorId);
+    setSelectedDoctor(doctor);
+    setMessages([]);
+    setIsChatWithAI(false);
+  };
+
+  const handleAIChat = () => {
+    setSelectedDoctor(null);
+    setIsChatWithAI(true);
+    setMessages([]);
+  };
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
@@ -65,14 +93,14 @@ export default function ChatBotComponent({
                   </div>
                 </>
               ) : (
-                <h3 className="font-semibold">Select a Doctor</h3>
+                <h3 className="font-semibold">{isChatWithAI ? 'AI Assistant' : 'Select a Doctor'}</h3>
               )}
             </div>
             <Button variant="ghost" size="icon" onClick={toggleChat} aria-label="Close chat">
               <X className="h-4 w-4" />
             </Button>
           </div>
-          {!selectedDoctor ? (
+          {!selectedDoctor && !isChatWithAI ? (
             <div className="p-4">
               <Select onValueChange={handleDoctorSelect}>
                 <SelectTrigger className="w-full">
@@ -86,6 +114,9 @@ export default function ChatBotComponent({
                   ))}
                 </SelectContent>
               </Select>
+              <Button onClick={handleAIChat} className="w-full mt-4">
+                Ask AI
+              </Button>
             </div>
           ) : (
             <>
