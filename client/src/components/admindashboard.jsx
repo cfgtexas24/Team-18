@@ -7,6 +7,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Calendar, Clock, Users } from 'lucide-react'
+import PatientsTable from './user-table'
+import Link from 'next/link'
 
 export default function Component() {
   const [appointments, setAppointments] = useState([
@@ -198,47 +200,17 @@ export default function Component() {
           </Card>
         </TabsContent>
         <TabsContent value="patients">
-          <Card>
-            <CardHeader>
-              <CardTitle>Patient List</CardTitle>
-              <CardDescription>Manage your patients here.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Input
-                  placeholder="Search patients..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <div className="flex space-x-2">
-                  <Input
-                    placeholder="Patient Name"
-                    value={newPatient.name}
-                    onChange={(e) => setNewPatient({...newPatient, name: e.target.value})}
-                  />
-                  <Input
-                    placeholder="Age"
-                    type="number"
-                    value={newPatient.age}
-                    onChange={(e) => setNewPatient({...newPatient, age: e.target.value})}
-                  />
-                  <Button onClick={handleAddPatient}>Add Patient</Button>
-                </div>
-                <div className="space-y-2">
-                  {filteredPatients.map((patient) => (
-                    <div key={patient.id} className="flex items-center justify-between bg-gray-100 p-2 rounded">
-                      <div>
-                        <span className="font-bold">{patient.name}</span> - Age: {patient.age}
-                      </div>
-                      <Button variant="destructive" size="sm" onClick={() => handleRemovePatient(patient.id)}>
-                        Remove
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+         <div>
+          <div className='flex items-center gap-2'>
+            <Button asChild> 
+              <Link href="/admin/dashboard/metrics">
+              Metrics
+            </Link>
+            
+            </Button>
+            </div>
+           <PatientsTable />
+          </div>
         </TabsContent>
       </Tabs>
     </div>
