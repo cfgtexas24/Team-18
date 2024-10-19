@@ -5,16 +5,45 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarIcon, ClipboardIcon, UserIcon, BeakerIcon, MenuIcon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
+
+const services = [
+  {
+    title: 'Appointments',
+    description: 'Schedule and manage your appointments with ease.',
+    icon: CalendarIcon,
+    link: '/appointments-page',
+  },
+  {
+    title: 'Lab Reports',
+    description: 'Access and review your lab reports securely.',
+    icon: BeakerIcon,
+    link: '/lab-reports',
+  },
+  {
+    title: 'Client Profiles',
+    description: 'Manage your personal information and care preferences.',
+    icon: UserIcon,
+    link: '/profile',
+  },
+  {
+    title: 'Care Plans',
+    description: 'View and track your personalized care plans.',
+    icon: ClipboardIcon,
+    link: '/care-plans',
+  },
+];
+
 export default function LandingPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#faf8f8]">
-
+    <div className="flex flex-col bg-[#faf8f8]">
       <main className="flex-grow">
-        <section className="bg-[#F4E8E7] py-12 md:py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text[#A26B61] mb-4">Welcome to Abide</h2>
-            <p className="text-lg md:text-xl text-[#A26B61] mb-8">Your trusted partner in midwifery care management</p>
-            <Button size="lg" asChild>
+        <section className="h-[70vh] bg-[#F4E8E7] py-12 md:py-20">
+          <div className="container mx-auto flex h-full flex-col items-start justify-center px-4 text-left">
+            <h2 className="text[#A26B61] mb-4 text-3xl font-bold md:text-6xl">Welcome to Abide</h2>
+            <p className="mb-8 text-lg text-[#A26B61] md:text-xl">
+              Your trusted partner in midwifery care management
+            </p>
+            <Button size="lg" asChild variant="default">
               <Link href="/client-signup">Get Started</Link>
             </Button>
           </div>
@@ -22,63 +51,26 @@ export default function LandingPage() {
 
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12">Our Services</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              <Link href="/appointments-page">
-                <Card className="hover:shadow-lg transition-shadow duration-300 p-4 h-full">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-lg md:text-xl">
+            <h3 className="mb-8 text-center text-2xl font-bold md:mb-12 md:text-3xl">
+              Our Services
+            </h3>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+              {services.map((service, index) => (
+                <Link href={service.link} key={index}>
+                  <Card className="h-full p-4 transition-shadow duration-300 hover:shadow-lg">
+                    <CardHeader>
                       <CalendarIcon className="mr-2 h-5 w-5" />
-                      Appointments
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm md:text-base">Schedule and manage your appointments with ease.</p>
-                  </CardContent>
-                </Card>
-              </Link>
 
-              <Link href="/lab-reports">
-                <Card className="hover:shadow-lg transition-shadow duration-300 p-4 h-full">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-lg md:text-xl">
-                      <BeakerIcon className="mr-2 h-5 w-5" />
-                      Lab Reports
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm md:text-base">Access and review your lab reports securely.</p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/profile">
-                <Card className="hover:shadow-lg transition-shadow duration-300 p-4 h-full">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-lg md:text-xl">
-                      <UserIcon className="mr-2 h-5 w-5" />
-                      Client Profiles
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm md:text-base">Manage your personal information and care preferences.</p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link href="/care-plans">
-                <Card className="hover:shadow-lg transition-shadow duration-300 p-4 h-full">
-                  <CardHeader>
-                    <CardTitle className="flex items-center text-lg md:text-xl">
-                      <ClipboardIcon className="mr-2 h-5 w-5" />
-                      Care Plans
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm md:text-base">View and track your personalized care plans.</p>
-                  </CardContent>
-                </Card>
-              </Link>
+                      <CardTitle className="flex items-center text-lg md:text-xl">
+                        {service.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm md:text-base">{service.description}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

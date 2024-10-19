@@ -31,9 +31,9 @@ function LangSelect() {
   }
 
   return (
-    (<DropdownMenu>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="w-full">
+        <Button variant="ghost" className="w-full">
           <span className="mr-2">{selectedLanguage.flag}</span>
           {selectedLanguage.name}
           <ChevronDown className="ml-2 h-4 w-4" />
@@ -47,7 +47,7 @@ function LangSelect() {
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
-    </DropdownMenu>)
+    </DropdownMenu>
   );
 }
 
