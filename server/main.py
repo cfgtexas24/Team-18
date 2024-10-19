@@ -6,7 +6,6 @@ from routes.admin import router as admin_router
 from routes.applications import router as applications_router
 from routes.profiles import router as profiles_router
 from routes.custom_questions import router as custom_questions_router
-from routes.lab_reports import router as lab_reports_router
 
 # Allow CORS
 app.add_middleware(
@@ -22,7 +21,6 @@ app.include_router(admin_router)
 app.include_router(applications_router)
 app.include_router(profiles_router)
 app.include_router(custom_questions_router)
-app.include_router(lab_reports_router)
 
 
 @app.get("/")
