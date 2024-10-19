@@ -24,7 +24,7 @@ export default function PatientDataDashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/admin/patients');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/patients`);
         const data = await response.json()
         setPatientsData(data)
       } catch (error) {

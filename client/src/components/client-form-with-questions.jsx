@@ -33,7 +33,7 @@ export default function ClientFormWithQuestions() {
 
   useEffect(() => {
     const fetchCustomQuestions = async () => {
-      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/questions');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/questions`);
       const data = await response.json();
       setCustomQuestions(data);
     };
