@@ -4,18 +4,21 @@ import React from 'react'
 
 function Page() {
   return (
- <div className="p-6 flex space-x-4">
-  <Button asChild>
- <Link href="/signin"> sign in</Link>
-  </Button>
+    <div className="p-6 flex space-x-4">
+      <Button asChild>
+        <Link href="/signin"> sign in</Link>
+      </Button>
 
-    <Button asChild>
-     <Link href="/client-signup"> Client Signup</Link>
-  </Button>
-  <Button asChild>
-     <Link href="/appointments-page"> appointments </Link>
-  </Button>
-   </div>
+      <Button asChild>
+        <Link href="/client-signup"> Client Signup</Link>
+      </Button>
+      <Button asChild>
+        <Link href="/appointments-page"> appointments </Link>
+      </Button>
+      <Button asChild>
+        <Link href="/schedule-event"> Schedule Events </Link>
+      </Button>
+    </div>
   )
 }
 

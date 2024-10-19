@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, ClockIcon } from "lucide-react"
 import { format } from "date-fns"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
 import {
   Card,
   CardContent,
@@ -28,10 +29,10 @@ const initialEvents = [
 
 export default function EventSchedulerComponent() {
   const [events, setEvents] = useState(initialEvents)
-  const [selectedDates, setSelectedDates] = useState({})
+  const [selectedDateTimes, setSelectedDateTimes] = useState({})
 
-  const handleDateSelect = (date, eventId) => {
-    setSelectedDates((prev) => ({ ...prev, [eventId]: date }))
+  const handleDateTimeSelect = (dateTime, eventId) => {
+    setSelectedDateTimes((prev) => ({ ...prev, [eventId]: dateTime }))
   }
 
   const handleSubmit = (eventId) => {
@@ -55,26 +56,28 @@ export default function EventSchedulerComponent() {
                     variant={"outline"}
                     className={cn(
                       "w-full justify-start text-left font-normal",
-                      !selectedDates[event.id] && "text-muted-foreground"
+                      !selectedDateTimes[event.id] && "text-muted-foreground"
                     )}>
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {selectedDates[event.id] ? (
-                      format(selectedDates[event.id], "PPP")
+                    <ClockIcon className="mr-2 h-4 w-4" />
+                    {selectedDateTimes[event.id] ? (
+                      format(selectedDateTimes[event.id], "PPP p")
                     ) : (
-                      <span>Pick a date</span>
+                      <span>Pick a date and time</span>
                     )}
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={selectedDates[event.id]}
-                    onSelect={(date) => handleDateSelect(date, event.id)}
-                    initialFocus />
+                  <DatePicker
+                    selected={selectedDateTimes[event.id]}
+                    onChange={(date) => handleDateTimeSelect(date, event.id)}
+                    showTimeSelect
+                    dateFormat="MMMM d, yyyy h:mm aa"
+                    inline />
                 </PopoverContent>
               </Popover>
             </CardContent>
-            {selectedDates[event.id] && (
+            {selectedDateTimes[event.id] && (
               <CardFooter>
                 <Button className="w-full" onClick={() => handleSubmit(event.id)}>
                   Submit
