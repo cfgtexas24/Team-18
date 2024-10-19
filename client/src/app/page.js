@@ -38,7 +38,7 @@ export default function LandingPage() {
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <section className="flex flex-col md:flex-row items-center justify-between py-12 md:py-20">
           <div className="text-center md:text-left mb-8 md:mb-0">
-            <h2 className="mb-4 text-3xl font-bold text-secondary md:text-6xl">Welcome to Abide</h2>
+            <h2 className="mb-4 text-3xl font-bold text-secondary md:text-6xl">Welcome to AbideCare</h2>
             <p className="mb-8 text-lg text-secondary/70 md:text-xl">
               Your trusted partner in midwifery care management
             </p>
