@@ -1,9 +1,14 @@
 import SignInComponent from '@/components/sign-in'
+import Banner from '@/components/banner'
 import React from 'react'
+
 
 function Page() {
   return (
-    <SignInComponent />
+    <div class="bg-[#F3ECEC] min-h-screen">
+      <Banner />
+      <SignInComponent />
+    </div>
   )
 }
 
