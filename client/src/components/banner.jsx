@@ -14,13 +14,14 @@ function Banner() {
 
 
   return (
-    <header className="bg-[#3A696E] py-4">
+    <header className="bg-secondary py-2 shadow">
       <div className="container mx-auto flex items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-4">
           <img src="/images/logo2.png" alt="Logo" className="h-8 w-8 md:h-16 md:w-16" />
+          <h1 className="text-xl font-bold text-secondary-foreground">Abide</h1>
         </Link>
         <nav className="hidden md:block">
-          <ul className="flex space-x-4 text-white">
+          <ul className="flex space-x-2 text-secondary-foreground">
             {!isAuthenticated ? (
               <>
                 <li>
@@ -71,7 +72,7 @@ function Banner() {
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="md:hidden">
-              <MenuIcon className="h-6 w-6" />
+              <MenuIcon className="h-6 w-6 text-secondary-foreground" />
             </Button>
           </SheetTrigger>
           <SheetContent>
