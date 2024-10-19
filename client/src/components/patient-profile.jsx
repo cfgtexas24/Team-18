@@ -11,11 +11,11 @@ export default function PatientProfileComponent() {
     <div className="container mx-auto my-[20px] p-4 space-y-6">
 
       {/* Centered Profile Section */}
-      <Card className="w-full md:w-3/4 mx-auto"> {/* Adjusted width and centering */}
+      <Card className="w-full md:w-3/4 mx-auto py-6"> {/* Adjusted width and centering */}
         <CardContent>
           <div className="flex flex-col items-center text-center space-y-4"> {/* Centering elements */}
             <Avatar className="w-32 h-32">
-              <AvatarImage src="/placeholder.svg?height=128&width=128" alt="John Doe" />
+              <AvatarImage src="/placeholder.svg?height=120&width=128" alt="John Doe" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
             <h1 className="text-3xl font-bold">John Doe</h1>
