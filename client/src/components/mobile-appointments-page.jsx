@@ -43,7 +43,7 @@ export default function MobileAppointmentsPage() {
   const filteredAppointments = appointments.filter((appointment) => appointment.status === activeTab)
 
   return (
-    (<div className="flex flex-col h-screen bg-background">
+    (<div className="flex flex-col h-screen bg-[#fffbfb]">
       <header className="flex justify-between items-center p-4 border-b">
         <h1 className="text-xl font-semibold">My Appointments</h1>
         <Button size="icon" variant="ghost">

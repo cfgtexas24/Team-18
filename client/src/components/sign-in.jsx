@@ -43,6 +43,7 @@ export default function SignInComponent() {
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
+                className="bg-white"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -53,6 +54,7 @@ export default function SignInComponent() {
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <Input
+                className="bg-white"
                 id="password"
                 type="password"
                 value={password}
