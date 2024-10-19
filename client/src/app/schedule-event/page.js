@@ -4,7 +4,7 @@ import React from 'react'
 
 function Page() {
     return (
-        <div class="bg-[#F3ECEC]">
+        <div className="bg-[#F3ECEC]">
             <EventScheduler />
         </div>
     )
