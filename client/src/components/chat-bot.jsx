@@ -85,7 +85,7 @@ export default function ChatBotComponent() {
     <div className="fixed bottom-4 right-4 z-50">
       {showPopup && ( // Popup logic
         <div className="fixed bottom-20 right-4 z-10 animate-bounce rounded-lg bg-primary p-4 text-white shadow-lg">
-          <p className="text-sm font-semibold">👋 Hey there! Need help? Ask Doc Bot!</p>
+          <p className="text-sm font-semibold">👋 Hey there! Need help? Ask Doc Bot or a real Doctor!</p>
           <Button
             variant="ghost"
             size="icon"
@@ -120,7 +120,7 @@ export default function ChatBotComponent() {
                 </>
               ) : (
                 <h3 className="font-semibold">
-                  {isChatWithAI ? 'Ask Doc Bot' : 'Select a Doctor'}
+                  {isChatWithAI ? 'Ask Doc Bot(AI)' : 'Select a Doctor'}
                 </h3>
               )}
             </div>
@@ -143,7 +143,7 @@ export default function ChatBotComponent() {
                 </SelectContent>
               </Select>
               <Button onClick={handleAIChat} className="mt-4 w-full">
-                Ask Doc Bot
+                Ask Doc Bot(AI)
               </Button>
             </div>
           ) : (
