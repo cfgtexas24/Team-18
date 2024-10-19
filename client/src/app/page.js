@@ -35,26 +35,6 @@ const services = [
 export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#3A696E] to-[#D3E2E4]">
-      <header className="p-4 md:hidden">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon">
-              <MenuIcon className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left">
-            <nav className="flex flex-col space-y-4">
-              {services.map((service, index) => (
-                <Link href={service.link} key={index} className="flex items-center space-x-2">
-                  <service.icon className="h-5 w-5" />
-                  <span>{service.title}</span>
-                </Link>
-              ))}
-            </nav>
-          </SheetContent>
-        </Sheet>
-      </header>
       <main className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <section className="flex flex-col md:flex-row items-center justify-between py-12 md:py-20">
           <div className="text-center md:text-left mb-8 md:mb-0">
@@ -79,7 +59,7 @@ export default function LandingPage() {
               />
               <path
                 d="M240.74 164.81C225.44 166.75 214.62 180.75 216.6 196.04L230.66 383.82L342.62 430.82L357.68 411.39L280.31 354.76L291.95 207.94C290.75 181.37 267.13 161.48 240.74 164.82V164.81Z"
-                fill="#F4E8E7"
+                fill="#F4E8E9"
               />
               <path d="M190.24 170.39L244.67 188.28V109.93H195.28L190.24 170.39Z" fill="#A26B61" />
               <path
