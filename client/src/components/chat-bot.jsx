@@ -84,22 +84,34 @@ export default function ChatBotComponent() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {showPopup && ( // Popup logic
-        <div className="fixed bottom-20 right-4 bg-primary text-white p-4 rounded-lg shadow-lg animate-bounce">
-          <p className="font-semibold text-sm">👋 Hey there! Need help? Ask Doc Bot!</p>
-          <Button variant="ghost" size="icon" onClick={() => setShowPopup(false)} aria-label="Close popup">
+        <div className="fixed bottom-20 right-4 z-10 animate-bounce rounded-lg bg-primary p-4 text-white shadow-lg">
+          <p className="text-sm font-semibold">👋 Hey there! Need help? Ask Doc Bot!</p>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowPopup(false)}
+            aria-label="Close popup"
+          >
             <X className="h-4 w-4" />
           </Button>
         </div>
       )}
       {isOpen ? (
-        <div className="bg-white rounded-full shadow-xl w-80 h-96 flex flex-col"> {/* Fully rounded chatbot box */}
-          <div className="p-4 bg-primary text-primary-foreground flex justify-between items-center rounded-t-full">
+        <div className="z-50 flex h-96 w-80 flex-col rounded-b-lg bg-white shadow-xl">
+          {' '}
+          {/* Fully rounded chatbot box */}
+          <div className="flex items-center justify-between rounded-t-lg bg-primary p-4 text-primary-foreground">
             <div className="flex items-center space-x-2">
               {selectedDoctor ? (
                 <>
                   <Avatar>
                     <AvatarImage src={selectedDoctor.avatarUrl} alt={selectedDoctor.name} />
-                    <AvatarFallback>{selectedDoctor.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                    <AvatarFallback>
+                      {selectedDoctor.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')}
+                    </AvatarFallback>
                   </Avatar>
                   <div>
                     <h3 className="font-semibold">Dr. {selectedDoctor.name}</h3>
@@ -107,7 +119,9 @@ export default function ChatBotComponent() {
                   </div>
                 </>
               ) : (
-                <h3 className="font-semibold">{isChatWithAI ? 'Ask Doc Bot' : 'Select a Doctor'}</h3>
+                <h3 className="font-semibold">
+                  {isChatWithAI ? 'Ask Doc Bot' : 'Select a Doctor'}
+                </h3>
               )}
             </div>
             <Button variant="ghost" size="icon" onClick={toggleChat} aria-label="Close chat">
@@ -128,7 +142,7 @@ export default function ChatBotComponent() {
                   ))}
                 </SelectContent>
               </Select>
-              <Button onClick={handleAIChat} className="w-full mt-4">
+              <Button onClick={handleAIChat} className="mt-4 w-full">
                 Ask Doc Bot
               </Button>
             </div>
@@ -137,13 +151,15 @@ export default function ChatBotComponent() {
               <ScrollArea className="flex-grow p-4">
                 {messages.map((msg, index) => (
                   <div key={index} className={`mb-2 ${msg.isUser ? 'text-right' : 'text-left'}`}>
-                    <span className={`inline-block p-2 rounded-lg ${msg.isUser ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}>
+                    <span
+                      className={`inline-block rounded-lg p-2 ${msg.isUser ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}
+                    >
                       {msg.text}
                     </span>
                   </div>
                 ))}
               </ScrollArea>
-              <form onSubmit={sendMessage} className="p-4 border-t">
+              <form onSubmit={sendMessage} className="border-t p-4">
                 <div className="flex space-x-2">
                   <Input
                     type="text"
@@ -164,7 +180,7 @@ export default function ChatBotComponent() {
         <Button
           onClick={toggleChat}
           size="icon"
-          className="rounded-full h-12 w-12"
+          className="h-12 w-12 rounded-full"
           aria-label="Open chat"
         >
           <MessageCircle className="h-6 w-6" />
