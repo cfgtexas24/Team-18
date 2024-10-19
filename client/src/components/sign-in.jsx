@@ -1,38 +1,44 @@
-'use client'
+// components/SignInComponent.jsx
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState, useContext } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AuthContext } from './AuthContext';
 
 export default function SignInComponent() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const router = useRouter()
+  const { login } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
+    e.preventDefault();
+    setError('');
 
     // For demonstration, we'll just simulate a successful login
     try {
       // Simulating an API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // If login is successful, redirect to dashboard
-      router.push('/dashboard')
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Update the authentication state
+      login();
+
+      // Redirect to dashboard
+      router.push('/');
     } catch (err) {
-      setError('Invalid email or password')
+      setError('Invalid email or password');
     }
-  }
+  };
 
   return (
-    (<Card className="bg-[#D3E2E4] w-full max-w-md mx-auto my-[20px]">
+    <Card className="bg-[#D3E2E4] w-full max-w-md mx-auto my-[20px]">
       <CardHeader>
         <CardTitle>Sign In</CardTitle>
         <CardDescription>Enter your email and password to access your account</CardDescription>
@@ -49,7 +55,8 @@ export default function SignInComponent() {
                 placeholder="m@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required />
+                required
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
@@ -59,7 +66,8 @@ export default function SignInComponent() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required />
+                required
+              />
             </div>
           </div>
           {error && (
@@ -73,10 +81,11 @@ export default function SignInComponent() {
       <CardFooter className="flex justify-center">
         <Link
           href="/auth/reset-password"
-          className="text-sm text-primary hover:underline">
+          className="text-sm text-primary hover:underline"
+        >
           Forgot your password?
         </Link>
       </CardFooter>
-    </Card>)
+    </Card>
   );
 }
