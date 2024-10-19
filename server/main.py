@@ -4,6 +4,7 @@ app = FastAPI()
 from routes.user import router as user_router
 from routes.admin import router as admin_router
 from routes.applications import router as applications_router
+from routes.profiles import router as profiles_router
 
 # Allow CORS
 app.add_middleware(
@@ -17,6 +18,7 @@ app.add_middleware(
 app.include_router(user_router)
 app.include_router(admin_router)
 app.include_router(applications_router)
+app.include_router(profiles_router)
 
 
 @app.get("/")
