@@ -83,19 +83,6 @@ export default function ChatBotComponent() {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      {showPopup && ( // Popup logic
-        <div className="fixed bottom-20 right-4 z-10 animate-bounce rounded-lg bg-primary p-4 text-white shadow-lg">
-          <p className="text-sm font-semibold">👋 Hey there! Need help? Ask Doc Bot or a real Doctor!</p>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setShowPopup(false)}
-            aria-label="Close popup"
-          >
-            <X className="h-4 w-4" />
-          </Button>
-        </div>
-      )}
       {isOpen ? (
         <div className="z-50 flex h-96 w-80 flex-col rounded-b-lg bg-white shadow-xl">
           {' '}

@@ -22,9 +22,9 @@ import {
 } from "@/components/ui/popover"
 
 const initialEvents = [
-  { id: 1, title: "Team Meeting", description: "Discuss project progress" },
-  { id: 2, title: "Client Presentation", description: "Present new features" },
-  { id: 3, title: "Workshop", description: "React best practices" },
+  { id: 1, title: "Birthing Class", description: "Walk throught the birthing process" },
+  { id: 2, title: "Lactation Tutorial", description: "Walk through lactation process" },
+  { id: 3, title: "Motherhood Workshop", description: "Grow parenting skills" },
 ]
 
 export default function EventSchedulerComponent() {
