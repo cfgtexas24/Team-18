@@ -40,7 +40,8 @@ export default function EventSchedulerComponent() {
   }
 
   return (
-    <div className="container mx-auto max-w-md p-4">
+  <div>
+    <div className="container mx-auto max-w-md p-6 bg-[#D3E2E4] w-screen rounded-2xl">
       <h1 className="mb-4 text-2xl font-bold">Event Scheduler</h1>
       <div className="space-y-4">
         {events.map((event) => (
@@ -90,5 +91,6 @@ export default function EventSchedulerComponent() {
         ))}
       </div>
     </div>
+  </div>
   );
 }

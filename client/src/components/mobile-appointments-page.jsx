@@ -65,7 +65,7 @@ export default function MobileAppointmentsPage() {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-[#fffbfb]">
+    <div className="flex h-screen flex-col bg-secondary">
       <header className="flex items-center justify-between border-b p-4">
         <h1 className="text-xl font-semibold">My Appointments</h1>
         <Button size="icon" variant="ghost" onClick={() => setIsModalOpen(true)}>
@@ -73,21 +73,21 @@ export default function MobileAppointmentsPage() {
         </Button>
       </header>
       <Tabs defaultValue="upcoming" className="flex flex-1 flex-col" onValueChange={setActiveTab}>
-        <TabsList className="sticky top-0 z-10 grid w-full grid-cols-2 bg-background">
-          <TabsTrigger value="upcoming" className="py-3 text-sm">
+        <TabsList className="sticky top-0 z-10 grid w-full grid-cols-2">
+          <TabsTrigger value="upcoming" className="bg-background">
             Upcoming
           </TabsTrigger>
-          <TabsTrigger value="completed" className="py-3 text-sm">
+          <TabsTrigger value="completed" className="bg-background">
             Completed
           </TabsTrigger>
         </TabsList>
 
         <ScrollArea className="flex-1">
-          <TabsContent value="upcoming" className="p-4 pt-0">
+          <TabsContent value="upcoming">
             <AppointmentList appointments={filteredAppointments} />
           </TabsContent>
 
-          <TabsContent value="completed" className="p-4 pt-0">
+          <TabsContent value="completed">
             <AppointmentList appointments={filteredAppointments} />
           </TabsContent>
         </ScrollArea>
