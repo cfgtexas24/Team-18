@@ -9,29 +9,35 @@ import { Calendar, Phone, Mail, MapPin, Droplet, AlertCircle, Pill } from "lucid
 export default function PatientProfileComponent() {
   return (
     <div className="container mx-auto my-[20px] p-4 space-y-6">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-        <Avatar className="w-32 h-32">
-          <AvatarImage src="/placeholder.svg?height=128&width=128" alt="John Doe" />
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-        <div className="space-y-2 text-center md:text-left">
-          <h1 className="text-3xl font-bold">John Doe</h1>
-          <div className="flex flex-wrap justify-center md:justify-start gap-2">
-            <Badge variant="secondary" className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" /> 35 years old
-            </Badge>
-            <Badge variant="secondary" className="flex items-center gap-1">
-              <Phone className="w-3 h-3" /> (555) 123-4567
-            </Badge>
-            <Badge variant="secondary" className="flex items-center gap-1">
-              <Mail className="w-3 h-3" /> john.doe@example.com
-            </Badge>
-            <Badge variant="secondary" className="flex items-center gap-1">
-              <MapPin className="w-3 h-3" /> New York, NY
-            </Badge>
+
+      {/* Centered Profile Section */}
+      <Card className="w-full md:w-3/4 mx-auto py-6"> {/* Adjusted width and centering */}
+        <CardContent>
+          <div className="flex flex-col items-center text-center space-y-4"> {/* Centering elements */}
+            <Avatar className="w-32 h-32">
+              <AvatarImage src="/placeholder.svg?height=120&width=128" alt="John Doe" />
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+            <h1 className="text-3xl font-bold">John Doe</h1>
+            <div className="flex flex-wrap justify-center gap-2">
+              <Badge variant="secondary" className="flex items-center gap-1">
+                <Calendar className="w-3 h-3" /> 35 years old
+              </Badge>
+              <Badge variant="secondary" className="flex items-center gap-1">
+                <Phone className="w-3 h-3" /> (555) 123-4567
+              </Badge>
+              <Badge variant="secondary" className="flex items-center gap-1">
+                <Mail className="w-3 h-3" /> john.doe@example.com
+              </Badge>
+              <Badge variant="secondary" className="flex items-center gap-1">
+                <MapPin className="w-3 h-3" /> New York, NY
+              </Badge>
+            </div>
           </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
+
+      {/* Existing Medical Info and Appointments */}
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -39,12 +45,12 @@ export default function PatientProfileComponent() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center gap-2">
-              <Droplet className="text-red-500" />
+              <Droplet className="text-primary" />
               <span className="font-semibold">Blood Type:</span> A+
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <AlertCircle className="text-yellow-500" />
+                <AlertCircle className="text-primary" />
                 <span className="font-semibold">Allergies:</span>
               </div>
               <ul className="list-disc list-inside pl-5 space-y-1">
@@ -54,7 +60,7 @@ export default function PatientProfileComponent() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <Pill className="text-blue-500" />
+                <Pill className="text-primary" />
                 <span className="font-semibold">Current Medications:</span>
               </div>
               <ul className="list-disc list-inside pl-5 space-y-1">
@@ -65,11 +71,11 @@ export default function PatientProfileComponent() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="flex flex-col justify-between">
           <CardHeader>
             <CardTitle>Upcoming Appointments</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 flex-grow">
             {[
               { date: "2024-10-25", time: "10:00 AM", doctor: "Dr. Smith", type: "Annual Check-up" },
               { date: "2024-11-05", time: "2:30 PM", doctor: "Dr. Johnson", type: "Cardiology Follow-up" },
@@ -85,8 +91,10 @@ export default function PatientProfileComponent() {
                 </div>
               </div>
             ))}
-            <Button className="w-full">Schedule New Appointment</Button>
           </CardContent>
+          <div className="p-4">
+            <Button className="w-full">Schedule New Appointment</Button>
+          </div>
         </Card>
 
         <Card className="md:col-span-2">
