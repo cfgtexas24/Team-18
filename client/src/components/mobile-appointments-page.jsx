@@ -32,7 +32,7 @@ export default function MobileAppointmentsPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://127.0.0.1:8000/appointments');
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/appointments');
       const data = await response.json();
       setAppointments(data);
     };
@@ -45,7 +45,7 @@ export default function MobileAppointmentsPage() {
 
   const handleNewAppointment = async (formData) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/appointments', {
+      const response = await fetch('${process.env.NEXT_PUBLIC_API_URL}/appointments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
