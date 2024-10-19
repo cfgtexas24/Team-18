@@ -40,8 +40,8 @@ export default function EventSchedulerComponent() {
   }
 
   return (
-    (<div className="container mx-auto p-4 max-w-md">
-      <h1 className="text-2xl font-bold mb-4">Event Scheduler</h1>
+    <div className="container mx-auto max-w-md p-4">
+      <h1 className="mb-4 text-2xl font-bold">Event Scheduler</h1>
       <div className="space-y-4">
         {events.map((event) => (
           <Card key={event.id} className="w-full">
@@ -53,15 +53,16 @@ export default function EventSchedulerComponent() {
               <Popover>
                 <PopoverTrigger asChild>
                   <Button
-                    variant={"outline"}
+                    variant={'outline'}
                     className={cn(
-                      "w-full justify-start text-left font-normal",
-                      !selectedDateTimes[event.id] && "text-muted-foreground"
-                    )}>
+                      'w-full justify-start text-left font-normal',
+                      !selectedDateTimes[event.id] && 'text-muted-foreground',
+                    )}
+                  >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     <ClockIcon className="mr-2 h-4 w-4" />
                     {selectedDateTimes[event.id] ? (
-                      format(selectedDateTimes[event.id], "PPP p")
+                      format(selectedDateTimes[event.id], 'PPP p')
                     ) : (
                       <span>Pick a date and time</span>
                     )}
@@ -73,7 +74,8 @@ export default function EventSchedulerComponent() {
                     onChange={(date) => handleDateTimeSelect(date, event.id)}
                     showTimeSelect
                     dateFormat="MMMM d, yyyy h:mm aa"
-                    inline />
+                    inline
+                  />
                 </PopoverContent>
               </Popover>
             </CardContent>
@@ -87,6 +89,6 @@ export default function EventSchedulerComponent() {
           </Card>
         ))}
       </div>
-    </div>)
+    </div>
   );
 }

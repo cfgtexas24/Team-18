@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import PatientsTable from './patients-table';
 import Link from 'next/link';
+import CustomQuestions from './CustomQuestions';
 
 export default function Component() {
   const [appointments, setAppointments] = useState([
@@ -194,6 +195,10 @@ export default function Component() {
         </div>
         <PatientsTable />
       </div>
+      <div className="mt-4">
+        <CustomQuestions />
+      </div>
+      <div />
     </div>
   );
 }
