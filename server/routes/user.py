@@ -1,4 +1,4 @@
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, Query
 import datetime
 # Create the FastAPI app
 from datetime import datetime  # Add the missing import statement
@@ -9,7 +9,7 @@ router = APIRouter()
 
 # Define user-related routes
 @router.get("/user/appt")
-async def user_appts():
+async def user_appts(user_id: int = Query(..., description="The ID of the user")):
     mock_appointments = [
         {"id": 1, "user_id": 1, "date": datetime.datetime(2023, 10, 1, 10, 0), "description": "Dentist appointment"},
         {"id": 2, "user_id": 1, "date": datetime.datetime(2023, 10, 2, 12, 0), "description": "Therapy session"},
