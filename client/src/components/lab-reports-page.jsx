@@ -9,14 +9,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Badge } from "@/components/ui/badge"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger
+        } from "@/components/ui/dialog"
 
 const labReports = [
   {
@@ -55,7 +49,7 @@ const labReports = [
     id: 5,
     title: 'Vitamin D Test',
     date: '2024-09-20',
-    status: 'low',
+    status: 'abnormal',
     category: 'Vitamin Test',
     pdfUrl: '/api/lab-reports/5.pdf',
   },
@@ -75,7 +69,7 @@ export default function LabReportsPageComponent() {
   }
 
   return (
-    (<div className="flex flex-col h-screen bg-background">
+    (<div className="flex flex-col h-screen bg-[#F3ECEC]">
       <header className="flex justify-between items-center p-4 border-b">
         <h1 className="text-xl font-semibold">Lab Reports</h1>
         <Button size="icon" variant="ghost">
@@ -160,8 +154,7 @@ function StatusBadge({ status }) {
   const statusStyles = {
     normal: 'bg-green-100 text-green-800',
     abnormal: 'bg-red-100 text-red-800',
-    pending: 'bg-yellow-100 text-yellow-800',
-    low: 'bg-blue-100 text-blue-800',
+    pending: 'bg-yellow-100 text-yellow-800'
   }
 
   return (
